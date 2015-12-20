@@ -8,23 +8,9 @@ library(ggplot2)
 library(Hmisc)
 ```
 
-```
-## Loading required package: grid
-## Loading required package: lattice
-## Loading required package: survival
-## Loading required package: splines
-## Loading required package: Formula
-## 
-## Attaching package: 'Hmisc'
-## 
-## The following objects are masked from 'package:base':
-## 
-##     format.pval, round.POSIXt, trunc.POSIXt, units
-```
+## Loading and preprocessing the data    
 
-## Loading and preprocessing the data  
-
-##### 1. Load the data (i.e. read.csv())
+##### 1. Load the data/format the variables
 
 ```r
 if(!file.exists('activity.csv')){
@@ -190,9 +176,9 @@ MeanStepsImputedData<-aggregate(imputedActData$steps,list(imputedActData$interva
 
 names(MeanStepsImputedData) <-c("interval","DayType","steps")
 
-final<-ggplot(MeanStepsImputedData, aes(interval, steps))
+panel_plot <-ggplot(MeanStepsImputedData, aes(interval, steps))
 
-final + 
+panel_plot + 
   geom_line(color="red") + 
   facet_grid(DayType ~ .) +
   xlab("5-minute intervals") + 

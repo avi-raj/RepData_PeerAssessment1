@@ -70,22 +70,11 @@ img {
 options(scipen=1)
 library(ggplot2)
 library(Hmisc)</code></pre>
-<pre><code>## Loading required package: grid
-## Loading required package: lattice
-## Loading required package: survival
-## Loading required package: splines
-## Loading required package: Formula
-## 
-## Attaching package: 'Hmisc'
-## 
-## The following objects are masked from 'package:base':
-## 
-##     format.pval, round.POSIXt, trunc.POSIXt, units</code></pre>
 </div>
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
-<div id="load-the-data-i.e.read.csv" class="section level5">
-<h5>1. Load the data (i.e. read.csv())</h5>
+<div id="load-the-dataformat-the-variables" class="section level5">
+<h5>1. Load the data/format the variables</h5>
 <pre class="r"><code>if(!file.exists('activity.csv')){
     unzip('activity.zip')
 }
@@ -196,9 +185,9 @@ imputedActData$DayType&lt;-factor((weekdays(imputedActData$date) %in% weekdays1)
 
 names(MeanStepsImputedData) &lt;-c(&quot;interval&quot;,&quot;DayType&quot;,&quot;steps&quot;)
 
-final&lt;-ggplot(MeanStepsImputedData, aes(interval, steps))
+panel_plot &lt;-ggplot(MeanStepsImputedData, aes(interval, steps))
 
-final + 
+panel_plot + 
   geom_line(color=&quot;red&quot;) + 
   facet_grid(DayType ~ .) +
   xlab(&quot;5-minute intervals&quot;) + 
